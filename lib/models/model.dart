@@ -1,4 +1,3 @@
-// モデル定義ファイル (models/model.dart)
 import 'dart:convert';
 
 class Ingredient {
@@ -10,9 +9,9 @@ class Ingredient {
 
   factory Ingredient.fromJson(Map<String, dynamic> json) {
     return Ingredient(
-      name: json['name'],
-      quantity: json['quantity'],
-      unit: json['unit'],
+      name: json['name'] ?? '',
+      quantity: json['quantity'] ?? 0,
+      unit: json['unit'] ?? '',
     );
   }
 
@@ -37,12 +36,11 @@ class Menu {
   Menu({required this.name, required this.ingredients});
 
   factory Menu.fromJson(Map<String, dynamic> json) {
-    var ingredientsFromJson = json['ingredients'] as List;
-    List<Ingredient> ingredientsList =
-        ingredientsFromJson.map((i) => Ingredient.fromJson(i)).toList();
+    var ingredientsFromJson = json['ingredients'] as List? ?? [];
+    List<Ingredient> ingredientsList = ingredientsFromJson.map((i) => Ingredient.fromJson(i)).toList();
 
     return Menu(
-      name: json['name'],
+      name: json['name'] ?? '',
       ingredients: ingredientsList,
     );
   }
@@ -77,11 +75,11 @@ class DayPlan {
 
   factory DayPlan.fromJson(Map<String, dynamic> json) {
     return DayPlan(
-      breakfast: Menu.fromJson(json['breakfast']),
-      lunch: Menu.fromJson(json['lunch']),
-      dinner: Menu.fromJson(json['dinner']),
-      date: DateTime.parse(json['date']),
-      weekday: json['weekday'],
+      breakfast: Menu.fromJson(json['breakfast'] ?? {}),
+      lunch: Menu.fromJson(json['lunch'] ?? {}),
+      dinner: Menu.fromJson(json['dinner'] ?? {}),
+      date: DateTime.parse(json['date'] ?? DateTime.now().toIso8601String()),
+      weekday: json['weekday'] ?? '',
     );
   }
 
@@ -107,9 +105,8 @@ class WeekPlan {
   WeekPlan({required this.days});
 
   factory WeekPlan.fromJson(Map<String, dynamic> json) {
-    var daysFromJson = json['days'] as List;
-    List<DayPlan> daysList =
-        daysFromJson.map((d) => DayPlan.fromJson(d)).toList();
+    var daysFromJson = json['days'] as List? ?? [];
+    List<DayPlan> daysList = daysFromJson.map((d) => DayPlan.fromJson(d)).toList();
 
     return WeekPlan(
       days: daysList,

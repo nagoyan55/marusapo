@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:myapp/models/model.dart'; // クラス定義があるファイルをインポート
-import 'package:intl/intl.dart'; // 日付フォーマット用
-import 'package:intl/date_symbol_data_local.dart'; // ロケールデータ初期化用
-import 'dart:convert'; // JSON操作用
-import 'package:flutter/services.dart' show rootBundle;
-import 'package:myapp/theme.dart'; // JSONファイル読み込み用
+import 'package:myapp/theme.dart'; // テーマファイルのインポート
+import 'package:myapp/logics/plan.dart'; // plan.dart のインポート
 
 void main() {
-  initializeDateFormatting('ja').then((_) {
-    runApp(MyApp());
-  });
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -30,7 +26,7 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('こんだてまるさぽくん')
+        title: Text('こんだてまるさぽくん'),
       ),
       body: Center(
         child: ElevatedButton(
@@ -58,14 +54,12 @@ class _PlanScreenState extends State<PlanScreen> {
   @override
   void initState() {
     super.initState();
-    _weekPlanFuture = createPlan();
+    _weekPlanFuture = loadAndCreatePlan(DateTime.now());
   }
 
-  Future<WeekPlan> createPlan() async {
-    String jsonString = await rootBundle.loadString('assets/plan.json');
-    Map<String, dynamic> jsonResponse = jsonDecode(jsonString);
-    WeekPlan weekPlan = WeekPlan.fromJson(jsonResponse);
-    return weekPlan;
+  Future<WeekPlan> loadAndCreatePlan(DateTime startDate) async {
+    String jsonString = await loadJson('assets/plan.json');
+    return createPlanFromJson(jsonString, startDate);
   }
 
   @override
@@ -102,7 +96,7 @@ class PlanTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DateFormat dateFormat = DateFormat('yyyy/MM/dd', 'ja');
+    DateFormat dateFormat = DateFormat('yyyy/MM/dd');
 
     return SingleChildScrollView(
       scrollDirection: Axis.horizontal,

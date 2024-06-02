@@ -1,37 +1,32 @@
 {
-    "days": [
-      {
-        "breakfast": {
-          "name": "トーストとサラダ",
-          "ingredients": []
-        },
-        "lunch": {
-          "name": "チキンカレー",
-          "ingredients": []
-        },
-        "dinner": {
-          "name": "焼き魚定食",
-          "ingredients": []
-        },
-        "date": "2024-06-01T00:00:00.000",
-        "weekday": "月"
+  "days": [
+    {
+      "breakfast": {
+        "name": "トーストとサラダ",
+        "ingredients": []
       },
-      {
-        "breakfast": {
-          "name": "シリアルと牛乳",
-          "ingredients": []
-        },
-        "lunch": {
-          "name": "サンドイッチ",
-          "ingredients": []
-        },
-        "dinner": {
-          "name": "パスタ",
-          "ingredients": []
-        },
-        "date": "2024-06-02T00:00:00.000",
-        "weekday": "火"
+      "lunch": {
+        "name": "チキンカレー",
+        "ingredients": []
+      },
+      "dinner": {
+        "name": "焼き魚定食",
+        "ingredients": []
       }
-    ]
-  }
-  
+    },
+    {
+      "breakfast": {
+        "name": "シリアルと牛乳",
+        "ingredients": []
+      },
+      "lunch": {
+        "name": "サンドイッチ",
+        "ingredients": []
+      },
+      "dinner": {
+        "name": "パスタ",
+        "ingredients": []
+      }
+    }
+  ]
+}
