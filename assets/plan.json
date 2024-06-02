@@ -1,0 +1,32 @@
+{
+  "days": [
+    {
+      "breakfast": {
+        "name": "トーストとサラダ",
+        "ingredients": []
+      },
+      "lunch": {
+        "name": "チキンカレー",
+        "ingredients": []
+      },
+      "dinner": {
+        "name": "焼き魚定食",
+        "ingredients": []
+      }
+    },
+    {
+      "breakfast": {
+        "name": "シリアルと牛乳",
+        "ingredients": []
+      },
+      "lunch": {
+        "name": "サンドイッチ",
+        "ingredients": []
+      },
+      "dinner": {
+        "name": "パスタ",
+        "ingredients": []
+      }
+    }
+  ]
+}
