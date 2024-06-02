@@ -1,20 +1,18 @@
 import 'dart:convert';
-import 'package:flutter/services.dart';
-import 'package:myapp/models/model.dart'; // モデルファイルをインポート
+import 'package:myapp/models/plan.dart';
 
-Future<String> loadJson(String path) async {
-  return await rootBundle.loadString(path);
-}
-
-Future<WeekPlan> createPlanFromJson(String jsonString, DateTime startDate) async {
-  Map<String, dynamic> jsonResponse = jsonDecode(jsonString);
-  WeekPlan weekPlan = WeekPlan.fromJson(jsonResponse);
-  setDates(weekPlan, startDate);
-  return weekPlan;
+WeekPlan createPlanFromJson(String jsonString, DateTime startDate) {
+  try {
+    final Map<String, dynamic> jsonResponse = jsonDecode(jsonString);
+    WeekPlan weekPlan = WeekPlan.fromJson(jsonResponse);
+    setDates(weekPlan, startDate);
+    return weekPlan;
+  } catch (e) {
+    throw FormatException("Invalid JSON format: $e");
+  }
 }
 
 void setDates(WeekPlan weekPlan, DateTime startDate) {
-  // 指定された日付を基準に一週間分の日付を設定
   for (int i = 0; i < weekPlan.days.length; i++) {
     weekPlan.days[i] = DayPlan(
       breakfast: weekPlan.days[i].breakfast,
