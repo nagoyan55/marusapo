@@ -1,6 +1,5 @@
 import 'dart:convert';
-import 'package:myapp/models/model.dart';
-import 'package:myapp/models/total_ingredient.dart';
+import 'package:myapp/models/plan.dart';
 import 'package:flutter/services.dart' show rootBundle;
 
 WeekPlan createPlanFromJson(String jsonString, DateTime startDate) {
@@ -45,28 +44,6 @@ String _getWeekdayName(DateTime date) {
     default:
       return '';
   }
-}
-
-List<TotalIngredient> calculateTotalIngredients(WeekPlan weekPlan) {
-  final Map<String, TotalIngredient> totalIngredients = {};
-
-  for (final dayPlan in weekPlan.days) {
-    for (final menu in [dayPlan.breakfast, dayPlan.lunch, dayPlan.dinner]) {
-      for (final ingredient in menu.ingredients) {
-        if (totalIngredients.containsKey(ingredient.name)) {
-          totalIngredients[ingredient.name]!.addQuantity(ingredient.quantity);
-        } else {
-          totalIngredients[ingredient.name] = TotalIngredient(
-            name: ingredient.name,
-            quantity: ingredient.quantity,
-            unit: ingredient.unit,
-          );
-        }
-      }
-    }
-  }
-
-  return totalIngredients.values.toList();
 }
 
 Future<String> loadJson(String path) async {

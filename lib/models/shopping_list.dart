@@ -34,3 +34,27 @@ class TotalIngredient {
     return 'TotalIngredient{name: $name, quantity: $quantity, unit: $unit}';
   }
 }
+
+class CheckedIngredient {
+  final String name;
+  bool isChecked;
+
+  CheckedIngredient({
+    required this.name,
+    this.isChecked = false,
+  });
+
+  factory CheckedIngredient.fromJson(Map<String, dynamic> json) {
+    return CheckedIngredient(
+      name: json['name'],
+      isChecked: json['isChecked'],
+    );
+  }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'name': name,
+      'isChecked': isChecked,
+    };
+  }
+}

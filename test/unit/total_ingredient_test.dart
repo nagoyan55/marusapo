@@ -1,7 +1,7 @@
 import 'package:flutter_test/flutter_test.dart';
-import 'package:myapp/logics/plan.dart';
-import 'package:myapp/models/model.dart';
-import 'package:myapp/models/total_ingredient.dart';
+import 'package:myapp/logics/shopping_list.dart';
+import 'package:myapp/models/plan.dart';
+import 'package:myapp/models/shopping_list.dart';
 
 void main() {
   group('calculateTotalIngredients', () {

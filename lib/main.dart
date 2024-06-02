@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:myapp/logics/plan.dart';
-import 'package:myapp/models/model.dart';
+import 'package:myapp/logics/shopping_list.dart';
+import 'package:myapp/models/plan.dart';
 import 'package:myapp/widgets/shopping_list_screen.dart';
 
 void main() {

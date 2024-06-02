@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/models/total_ingredient.dart';
+import 'package:myapp/models/shopping_list.dart';
 
 class ShoppingListScreen extends StatefulWidget {
   final List<TotalIngredient> totalIngredients;
