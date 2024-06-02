@@ -1,60 +1,16 @@
-import 'dart:convert';
+class WeekPlan {
+  final List<DayPlan> days;
 
-class Ingredient {
-  final String name;
-  final num quantity;
-  final String unit;
+  WeekPlan({required this.days});
 
-  Ingredient({required this.name, required this.quantity, required this.unit});
+  factory WeekPlan.fromJson(Map<String, dynamic> json) {
+    if (json.length != 1 || !json.containsKey('days')) {
+      throw FormatException('Invalid JSON format');
+    }
 
-  factory Ingredient.fromJson(Map<String, dynamic> json) {
-    return Ingredient(
-      name: json['name'] ?? '',
-      quantity: json['quantity'] ?? 0,
-      unit: json['unit'] ?? '',
+    return WeekPlan(
+      days: List<DayPlan>.from(json['days'].map((x) => DayPlan.fromJson(x))),
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'quantity': quantity,
-      'unit': unit,
-    };
-  }
-
-  @override
-  String toString() {
-    return jsonEncode(this.toJson());
-  }
-}
-
-class Menu {
-  final String name;
-  final List<Ingredient> ingredients;
-
-  Menu({required this.name, required this.ingredients});
-
-  factory Menu.fromJson(Map<String, dynamic> json) {
-    var ingredientsFromJson = json['ingredients'] as List? ?? [];
-    List<Ingredient> ingredientsList = ingredientsFromJson.map((i) => Ingredient.fromJson(i)).toList();
-
-    return Menu(
-      name: json['name'] ?? '',
-      ingredients: ingredientsList,
-    );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'name': name,
-      'ingredients': ingredients.map((i) => i.toJson()).toList(),
-    };
-  }
-
-  @override
-  String toString() {
-    return jsonEncode(this.toJson());
   }
 }
 
@@ -74,53 +30,61 @@ class DayPlan {
   });
 
   factory DayPlan.fromJson(Map<String, dynamic> json) {
+    if (json.length != 3 || !json.containsKey('breakfast') || !json.containsKey('lunch') || !json.containsKey('dinner')) {
+      throw FormatException('Invalid JSON format');
+    }
+
     return DayPlan(
-      breakfast: Menu.fromJson(json['breakfast'] ?? {}),
-      lunch: Menu.fromJson(json['lunch'] ?? {}),
-      dinner: Menu.fromJson(json['dinner'] ?? {}),
-      date: DateTime.parse(json['date'] ?? DateTime.now().toIso8601String()),
-      weekday: json['weekday'] ?? '',
+      breakfast: Menu.fromJson(json['breakfast']),
+      lunch: Menu.fromJson(json['lunch']),
+      dinner: Menu.fromJson(json['dinner']),
+      date: DateTime.now(), // 仮の日付
+      weekday: '', // 仮の曜日
     );
-  }
-
-  Map<String, dynamic> toJson() {
-    return {
-      'breakfast': breakfast.toJson(),
-      'lunch': lunch.toJson(),
-      'dinner': dinner.toJson(),
-      'date': date.toIso8601String(),
-      'weekday': weekday,
-    };
-  }
-
-  @override
-  String toString() {
-    return jsonEncode(this.toJson());
   }
 }
 
-class WeekPlan {
-  final List<DayPlan> days;
+class Menu {
+  final String name;
+  final List<Ingredient> ingredients;
 
-  WeekPlan({required this.days});
+  Menu({
+    required this.name,
+    required this.ingredients,
+  });
 
-  factory WeekPlan.fromJson(Map<String, dynamic> json) {
-    var daysFromJson = json['days'] as List? ?? [];
-    List<DayPlan> daysList = daysFromJson.map((d) => DayPlan.fromJson(d)).toList();
+  factory Menu.fromJson(Map<String, dynamic> json) {
+    if (json.length != 2 || !json.containsKey('name') || !json.containsKey('ingredients')) {
+      throw FormatException('Invalid JSON format');
+    }
 
-    return WeekPlan(
-      days: daysList,
+    return Menu(
+      name: json['name'],
+      ingredients: List<Ingredient>.from(json['ingredients'].map((x) => Ingredient.fromJson(x))),
     );
   }
+}
 
-  Map<String, dynamic> toJson() {
-    return {
-      'days': days.map((d) => d.toJson()).toList(),
-    };
-  }
+class Ingredient {
+  final String name;
+  final num quantity;
+  final String unit;
 
-  @override
-  String toString() {
-    return jsonEncode(this.toJson());
+  Ingredient({
+    required this.name,
+    required this.quantity,
+    required this.unit,
+  });
+
+  factory Ingredient.fromJson(Map<String, dynamic> json) {
+    if (json.length != 3 || !json.containsKey('name') || !json.containsKey('quantity') || !json.containsKey('unit')) {
+      throw FormatException('Invalid JSON format');
+    }
+
+    return Ingredient(
+      name: json['name'],
+      quantity: json['quantity'],
+      unit: json['unit'],
+    );
   }
 }

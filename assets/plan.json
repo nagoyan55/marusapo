@@ -3,29 +3,200 @@
     {
       "breakfast": {
         "name": "トーストとサラダ",
-        "ingredients": []
+        "ingredients": [
+          {"name": "トースト", "quantity": 2, "unit": "枚"},
+          {"name": "レタス", "quantity": 1, "unit": "枚"},
+          {"name": "トマト", "quantity": 0.5, "unit": "個"},
+          {"name": "ドレッシング", "quantity": 1, "unit": "大さじ"}
+        ]
       },
       "lunch": {
         "name": "チキンカレー",
-        "ingredients": []
+        "ingredients": [
+          {"name": "鶏肉", "quantity": 200, "unit": "g"},
+          {"name": "玉ねぎ", "quantity": 1, "unit": "個"},
+          {"name": "人参", "quantity": 0.5, "unit": "本"},
+          {"name": "ジャガイモ", "quantity": 1, "unit": "個"},
+          {"name": "カレールー", "quantity": 1, "unit": "片"}
+        ]
       },
       "dinner": {
         "name": "焼き魚定食",
-        "ingredients": []
+        "ingredients": [
+          {"name": "魚", "quantity": 1, "unit": "切れ"},
+          {"name": "ご飯", "quantity": 1, "unit": "杯"},
+          {"name": "味噌汁", "quantity": 1, "unit": "杯"},
+          {"name": "漬物", "quantity": 50, "unit": "g"}
+        ]
       }
     },
     {
       "breakfast": {
         "name": "シリアルと牛乳",
-        "ingredients": []
+        "ingredients": [
+          {"name": "シリアル", "quantity": 50, "unit": "g"},
+          {"name": "牛乳", "quantity": 200, "unit": "ml"}
+        ]
       },
       "lunch": {
         "name": "サンドイッチ",
-        "ingredients": []
+        "ingredients": [
+          {"name": "食パン", "quantity": 2, "unit": "枚"},
+          {"name": "ハム", "quantity": 2, "unit": "枚"},
+          {"name": "チーズ", "quantity": 1, "unit": "枚"},
+          {"name": "レタス", "quantity": 1, "unit": "枚"}
+        ]
       },
       "dinner": {
         "name": "パスタ",
-        "ingredients": []
+        "ingredients": [
+          {"name": "パスタ", "quantity": 100, "unit": "g"},
+          {"name": "トマトソース", "quantity": 200, "unit": "g"},
+          {"name": "オリーブオイル", "quantity": 1, "unit": "大さじ"},
+          {"name": "バジル", "quantity": 0.1, "unit": "g"}
+        ]
+      }
+    },
+    {
+      "breakfast": {
+        "name": "和風朝食",
+        "ingredients": [
+          {"name": "ご飯", "quantity": 1, "unit": "杯"},
+          {"name": "味噌汁", "quantity": 1, "unit": "杯"},
+          {"name": "焼き鮭", "quantity": 1, "unit": "切れ"},
+          {"name": "漬物", "quantity": 50, "unit": "g"}
+        ]
+      },
+      "lunch": {
+        "name": "ラーメン",
+        "ingredients": [
+          {"name": "ラーメン", "quantity": 1, "unit": "玉"},
+          {"name": "チャーシュー", "quantity": 2, "unit": "枚"},
+          {"name": "メンマ", "quantity": 50, "unit": "g"},
+          {"name": "ネギ", "quantity": 0.5, "unit": "本"}
+        ]
+      },
+      "dinner": {
+        "name": "ビーフシチュー",
+        "ingredients": [
+          {"name": "牛肉", "quantity": 200, "unit": "g"},
+          {"name": "玉ねぎ", "quantity": 1, "unit": "個"},
+          {"name": "人参", "quantity": 0.5, "unit": "本"},
+          {"name": "ジャガイモ", "quantity": 1, "unit": "個"},
+          {"name": "シチュールー", "quantity": 1, "unit": "片"}
+        ]
+      }
+    },
+    {
+      "breakfast": {
+        "name": "パンケーキとフルーツ",
+        "ingredients": [
+          {"name": "パンケーキ", "quantity": 2, "unit": "枚"},
+          {"name": "イチゴ", "quantity": 5, "unit": "個"},
+          {"name": "ブルーベリー", "quantity": 20, "unit": "個"},
+          {"name": "シロップ", "quantity": 1, "unit": "大さじ"}
+        ]
+      },
+      "lunch": {
+        "name": "オムライス",
+        "ingredients": [
+          {"name": "ご飯", "quantity": 1, "unit": "杯"},
+          {"name": "卵", "quantity": 2, "unit": "個"},
+          {"name": "鶏肉", "quantity": 100, "unit": "g"},
+          {"name": "ケチャップ", "quantity": 2, "unit": "大さじ"}
+        ]
+      },
+      "dinner": {
+        "name": "ハンバーグ",
+        "ingredients": [
+          {"name": "牛ひき肉", "quantity": 200, "unit": "g"},
+          {"name": "玉ねぎ", "quantity": 1, "unit": "個"},
+          {"name": "パン粉", "quantity": 0.5, "unit": "カップ"},
+          {"name": "卵", "quantity": 1, "unit": "個"}
+        ]
+      }
+    },
+    {
+      "breakfast": {
+        "name": "ヨーグルトとフルーツ",
+        "ingredients": [
+          {"name": "ヨーグルト", "quantity": 200, "unit": "g"},
+          {"name": "バナナ", "quantity": 1, "unit": "本"},
+          {"name": "ハチミツ", "quantity": 1, "unit": "大さじ"}
+        ]
+      },
+      "lunch": {
+        "name": "サラダチキン",
+        "ingredients": [
+          {"name": "鶏むね肉", "quantity": 200, "unit": "g"},
+          {"name": "レタス", "quantity": 2, "unit": "枚"},
+          {"name": "トマト", "quantity": 1, "unit": "個"},
+          {"name": "ドレッシング", "quantity": 1, "unit": "大さじ"}
+        ]
+      },
+      "dinner": {
+        "name": "刺身定食",
+        "ingredients": [
+          {"name": "刺身", "quantity": 200, "unit": "g"},
+          {"name": "ご飯", "quantity": 1, "unit": "杯"},
+          {"name": "味噌汁", "quantity": 1, "unit": "杯"},
+          {"name": "漬物", "quantity": 50, "unit": "g"}
+        ]
+      }
+    },
+    {
+      "breakfast": {
+        "name": "ベーグルとクリームチーズ",
+        "ingredients": [
+          {"name": "ベーグル", "quantity": 1, "unit": "個"},
+          {"name": "クリームチーズ", "quantity": 2, "unit": "大さじ"}
+        ]
+      },
+      "lunch": {
+        "name": "天ぷらうどん",
+        "ingredients": [
+          {"name": "うどん", "quantity": 1, "unit": "玉"},
+          {"name": "海老", "quantity": 2, "unit": "尾"},
+          {"name": "かぼちゃ", "quantity": 0.5, "unit": "本"},
+          {"name": "天つゆ", "quantity": 1, "unit": "カップ"}
+        ]
+      },
+      "dinner": {
+        "name": "麻婆豆腐",
+        "ingredients": [
+          {"name": "豚ひき肉", "quantity": 150, "unit": "g"},
+          {"name": "豆腐", "quantity": 1, "unit": "丁"},
+          {"name": "ネギ", "quantity": 0.5, "unit": "本"},
+          {"name": "麻婆ソース", "quantity": 1, "unit": "袋"}
+        ]
+      }
+    },
+    {
+      "breakfast": {
+        "name": "クロワッサンとコーヒー",
+        "ingredients": [
+          {"name": "クロワッサン", "quantity": 2, "unit": "個"},
+          {"name": "コーヒー", "quantity": 1, "unit": "杯"}
+        ]
+      },
+      "lunch": {
+        "name": "カレーライス",
+        "ingredients": [
+          {"name": "ご飯", "quantity": 1, "unit": "杯"},
+          {"name": "カレールー", "quantity": 1, "unit": "片"},
+          {"name": "鶏肉", "quantity": 200, "unit": "g"},
+          {"name": "玉ねぎ", "quantity": 1, "unit": "個"},
+          {"name": "人参", "quantity": 0.5, "unit": "本"},
+          {"name": "ジャガイモ", "quantity": 1, "unit": "個"}
+        ]
+      },
+      "dinner": {
+        "name": "ステーキ",
+        "ingredients": [
+          {"name": "牛ステーキ肉", "quantity": 200, "unit": "g"},
+          {"name": "サラダ", "quantity": 1, "unit": "皿"},
+          {"name": "フレンチフライ", "quantity": 100, "unit": "g"}
+        ]
       }
     }
   ]
