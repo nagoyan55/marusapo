@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/models/shopping_list.dart';
+import 'package:myapp/models/ingredients.dart';
+import 'package:myapp/util/checked_ingredients_manager.dart';
 
 class ShoppingListScreen extends StatefulWidget {
   final List<TotalIngredient> totalIngredients;
@@ -11,14 +12,30 @@ class ShoppingListScreen extends StatefulWidget {
 }
 
 class _ShoppingListScreenState extends State<ShoppingListScreen> {
-  final Map<String, bool> _checkedItems = {};
+  List<CheckedIngredient> _checkedIngredients = [];
 
   @override
   void initState() {
     super.initState();
-    for (var ingredient in widget.totalIngredients) {
-      _checkedItems[ingredient.name] = false;
-    }
+    _loadCheckedIngredients();
+  }
+
+  Future<void> _loadCheckedIngredients() async {
+    final loadedCheckedIngredients =
+        await CheckedIngredientsManager.loadCheckedIngredients();
+    setState(() {
+      if (loadedCheckedIngredients.isNotEmpty) {
+        _checkedIngredients = loadedCheckedIngredients;
+      } else {
+        _checkedIngredients = widget.totalIngredients
+            .map((ingredient) => CheckedIngredient(name: ingredient.name))
+            .toList();
+      }
+    });
+  }
+
+  Future<void> _saveCheckedIngredients() async {
+    await CheckedIngredientsManager.saveCheckedIngredients(_checkedIngredients);
   }
 
   @override
@@ -32,13 +49,17 @@ class _ShoppingListScreenState extends State<ShoppingListScreen> {
         separatorBuilder: (context, index) => Divider(),
         itemBuilder: (context, index) {
           final ingredient = widget.totalIngredients[index];
+          final checkedIngredient = _checkedIngredients
+              .firstWhere((element) => element.name == ingredient.name);
+
           return CheckboxListTile(
             title: Text(ingredient.name),
             subtitle: Text('${ingredient.quantity} ${ingredient.unit}'),
-            value: _checkedItems[ingredient.name],
+            value: checkedIngredient.isChecked,
             onChanged: (bool? value) {
               setState(() {
-                _checkedItems[ingredient.name] = value ?? false;
+                checkedIngredient.isChecked = value ?? false;
+                _saveCheckedIngredients();
               });
             },
           );

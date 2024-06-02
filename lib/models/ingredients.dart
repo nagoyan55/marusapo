@@ -58,3 +58,30 @@ class CheckedIngredient {
     };
   }
 }
+
+class Ingredient {
+  final String name;
+  final num quantity;
+  final String unit;
+
+  Ingredient({
+    required this.name,
+    required this.quantity,
+    required this.unit,
+  });
+
+  factory Ingredient.fromJson(Map<String, dynamic> json) {
+    if (json.length != 3 ||
+        !json.containsKey('name') ||
+        !json.containsKey('quantity') ||
+        !json.containsKey('unit')) {
+      throw FormatException('Invalid JSON format');
+    }
+
+    return Ingredient(
+      name: json['name'],
+      quantity: json['quantity'],
+      unit: json['unit'],
+    );
+  }
+}

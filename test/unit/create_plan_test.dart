@@ -108,7 +108,8 @@ void main() {
 
       final DateTime startDate = DateTime(2023, 1, 1);
 
-      expect(() => createPlanFromJson(jsonString, startDate), throwsA(isA<FormatException>()));
+      expect(() => createPlanFromJson(jsonString, startDate),
+          throwsA(isA<FormatException>()));
     });
 
     test('部分的に欠けたデータでPlanを生成する', () {

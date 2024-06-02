@@ -1,3 +1,5 @@
+import 'package:myapp/models/ingredients.dart';
+
 class WeekPlan {
   final List<DayPlan> days;
 
@@ -30,7 +32,10 @@ class DayPlan {
   });
 
   factory DayPlan.fromJson(Map<String, dynamic> json) {
-    if (json.length != 3 || !json.containsKey('breakfast') || !json.containsKey('lunch') || !json.containsKey('dinner')) {
+    if (json.length != 3 ||
+        !json.containsKey('breakfast') ||
+        !json.containsKey('lunch') ||
+        !json.containsKey('dinner')) {
       throw FormatException('Invalid JSON format');
     }
 
@@ -54,37 +59,16 @@ class Menu {
   });
 
   factory Menu.fromJson(Map<String, dynamic> json) {
-    if (json.length != 2 || !json.containsKey('name') || !json.containsKey('ingredients')) {
+    if (json.length != 2 ||
+        !json.containsKey('name') ||
+        !json.containsKey('ingredients')) {
       throw FormatException('Invalid JSON format');
     }
 
     return Menu(
       name: json['name'],
-      ingredients: List<Ingredient>.from(json['ingredients'].map((x) => Ingredient.fromJson(x))),
-    );
-  }
-}
-
-class Ingredient {
-  final String name;
-  final num quantity;
-  final String unit;
-
-  Ingredient({
-    required this.name,
-    required this.quantity,
-    required this.unit,
-  });
-
-  factory Ingredient.fromJson(Map<String, dynamic> json) {
-    if (json.length != 3 || !json.containsKey('name') || !json.containsKey('quantity') || !json.containsKey('unit')) {
-      throw FormatException('Invalid JSON format');
-    }
-
-    return Ingredient(
-      name: json['name'],
-      quantity: json['quantity'],
-      unit: json['unit'],
+      ingredients: List<Ingredient>.from(
+          json['ingredients'].map((x) => Ingredient.fromJson(x))),
     );
   }
 }

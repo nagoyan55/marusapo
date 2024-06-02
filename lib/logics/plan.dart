@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'package:myapp/models/plan.dart';
-import 'package:flutter/services.dart' show rootBundle;
 
 WeekPlan createPlanFromJson(String jsonString, DateTime startDate) {
   try {
@@ -44,8 +43,4 @@ String _getWeekdayName(DateTime date) {
     default:
       return '';
   }
-}
-
-Future<String> loadJson(String path) async {
-  return await rootBundle.loadString(path);
 }

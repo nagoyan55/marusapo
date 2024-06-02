@@ -1,5 +1,5 @@
 import 'package:myapp/models/plan.dart';
-import 'package:myapp/models/shopping_list.dart';
+import 'package:myapp/models/ingredients.dart';
 
 List<TotalIngredient> calculateTotalIngredients(WeekPlan weekPlan) {
   final Map<String, TotalIngredient> totalIngredients = {};
