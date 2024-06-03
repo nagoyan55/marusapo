@@ -36,16 +36,20 @@ class HomeScreen extends StatelessWidget {
       ),
       body: Center(
         child: ElevatedButton(
+          style: ElevatedButton.styleFrom(
+            shape: CircleBorder(),
+            padding: EdgeInsets.all(40),
+            minimumSize: Size(160, 160),
+          ),
           onPressed: () {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) =>
-                    PlanScreen(loadJsonFunction: loadJsonFunction),
+                builder: (context) => PlanScreen(loadJsonFunction: loadJsonFunction),
               ),
             );
           },
-          child: Text('プランを生成'),
+          child: Text('プラン作成', style: TextStyle(fontSize: 18)),
         ),
       ),
     );
