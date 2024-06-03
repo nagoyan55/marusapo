@@ -20,8 +20,8 @@ DayPlan _$DayPlanFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$DayPlan {
-  DateTime get date => throw _privateConstructorUsedError;
-  String get weekday => throw _privateConstructorUsedError;
+  DateTime? get date => throw _privateConstructorUsedError;
+  String? get weekday => throw _privateConstructorUsedError;
   Menu get menu => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -34,7 +34,7 @@ abstract class $DayPlanCopyWith<$Res> {
   factory $DayPlanCopyWith(DayPlan value, $Res Function(DayPlan) then) =
       _$DayPlanCopyWithImpl<$Res, DayPlan>;
   @useResult
-  $Res call({DateTime date, String weekday, Menu menu});
+  $Res call({DateTime? date, String? weekday, Menu menu});
 
   $MenuCopyWith<$Res> get menu;
 }
@@ -52,19 +52,19 @@ class _$DayPlanCopyWithImpl<$Res, $Val extends DayPlan>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? date = null,
-    Object? weekday = null,
+    Object? date = freezed,
+    Object? weekday = freezed,
     Object? menu = null,
   }) {
     return _then(_value.copyWith(
-      date: null == date
+      date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      weekday: null == weekday
+              as DateTime?,
+      weekday: freezed == weekday
           ? _value.weekday
           : weekday // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       menu: null == menu
           ? _value.menu
           : menu // ignore: cast_nullable_to_non_nullable
@@ -88,7 +88,7 @@ abstract class _$$DayPlanImplCopyWith<$Res> implements $DayPlanCopyWith<$Res> {
       __$$DayPlanImplCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({DateTime date, String weekday, Menu menu});
+  $Res call({DateTime? date, String? weekday, Menu menu});
 
   @override
   $MenuCopyWith<$Res> get menu;
@@ -105,19 +105,19 @@ class __$$DayPlanImplCopyWithImpl<$Res>
   @pragma('vm:prefer-inline')
   @override
   $Res call({
-    Object? date = null,
-    Object? weekday = null,
+    Object? date = freezed,
+    Object? weekday = freezed,
     Object? menu = null,
   }) {
     return _then(_$DayPlanImpl(
-      date: null == date
+      date: freezed == date
           ? _value.date
           : date // ignore: cast_nullable_to_non_nullable
-              as DateTime,
-      weekday: null == weekday
+              as DateTime?,
+      weekday: freezed == weekday
           ? _value.weekday
           : weekday // ignore: cast_nullable_to_non_nullable
-              as String,
+              as String?,
       menu: null == menu
           ? _value.menu
           : menu // ignore: cast_nullable_to_non_nullable
@@ -136,9 +136,9 @@ class _$DayPlanImpl implements _DayPlan {
       _$$DayPlanImplFromJson(json);
 
   @override
-  final DateTime date;
+  final DateTime? date;
   @override
-  final String weekday;
+  final String? weekday;
   @override
   final Menu menu;
 
@@ -177,16 +177,16 @@ class _$DayPlanImpl implements _DayPlan {
 
 abstract class _DayPlan implements DayPlan {
   const factory _DayPlan(
-      {required final DateTime date,
-      required final String weekday,
+      {required final DateTime? date,
+      required final String? weekday,
       required final Menu menu}) = _$DayPlanImpl;
 
   factory _DayPlan.fromJson(Map<String, dynamic> json) = _$DayPlanImpl.fromJson;
 
   @override
-  DateTime get date;
+  DateTime? get date;
   @override
-  String get weekday;
+  String? get weekday;
   @override
   Menu get menu;
   @override

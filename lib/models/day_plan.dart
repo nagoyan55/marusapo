@@ -7,8 +7,8 @@ part 'day_plan.g.dart';
 @freezed
 class DayPlan with _$DayPlan {
   const factory DayPlan({
-    required DateTime date,
-    required String weekday,
+    required DateTime? date,
+    required String? weekday,
     required Menu menu,
   }) = _DayPlan;
 

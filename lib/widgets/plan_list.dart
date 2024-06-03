@@ -20,7 +20,7 @@ class PlanList extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(left: 16.0),
               child: Text(
-                '${dayPlan.date.year}/${dayPlan.date.month.toString().padLeft(2, '0')}/${dayPlan.date.day.toString().padLeft(2, '0')} (${dayPlan.weekday})',
+                '${dayPlan.date!.year}/${dayPlan.date!.month.toString().padLeft(2, '0')}/${dayPlan.date!.day.toString().padLeft(2, '0')} (${dayPlan.weekday})',
                 style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
               ),
             ),
