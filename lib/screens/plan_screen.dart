@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/services/firestore_service.dart';
-import 'package:myapp/models/week_plan.dart';
-import 'package:myapp/widgets/plan_list.dart';
-import 'package:myapp/widgets/shopping_list_screen.dart';
+import 'package:myapp/screens/sign_in_screen.dart';
 import 'package:myapp/util/checked_ingredients_manager.dart';
-import 'package:myapp/widgets/home_screen.dart';
+import 'package:provider/provider.dart';
+import '../services/auth_service.dart';
+import '../services/firestore_service.dart';
+import '../models/week_plan.dart';
+import '../widgets/plan_list.dart';
+import 'shopping_list_screen.dart';
+import 'home_screen.dart';
 
 class PlanScreen extends StatefulWidget {
   @override
@@ -33,7 +36,7 @@ class _PlanScreenState extends State<PlanScreen> {
   }
 
   Future<void> _fetchPlanFromFirestore() async {
-    await CheckedIngredientsManager.clearCheckedIngredients(); // チェック情報を破棄
+    await CheckedIngredientsManager.clearCheckedIngredients();
     WeekPlan newPlan = await _firestoreService.fetchPlansFromFirestore();
     setState(() {
       _weekPlanFuture = Future.value(newPlan);
@@ -51,8 +54,10 @@ class _PlanScreenState extends State<PlanScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final authService = Provider.of<AuthService>(context);
+
     return WillPopScope(
-      onWillPop: () async => false, // ナビゲーションバックを無効化
+      onWillPop: () async => false,
       child: Scaffold(
         appBar: AppBar(
           title: Text('こんだてまるさぽくん'),
@@ -66,6 +71,17 @@ class _PlanScreenState extends State<PlanScreen> {
               icon: Icon(Icons.delete),
               tooltip: 'プランを削除する',
               onPressed: () => _deletePlan(context),
+            ),
+            IconButton(
+              icon: Icon(Icons.logout),
+              tooltip: 'サインアウト',
+              onPressed: () async {
+                await authService.signOut();
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(builder: (context) => SignInScreen()),
+                );
+              },
             ),
           ],
         ),
