@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:myapp/models/week_plan.dart';
-import 'package:myapp/util/checked_ingredients_manager.dart'; // チェック情報管理
+import 'package:myapp/util/checked_ingredients_manager.dart';
 import 'dart:convert';
 
 class FirestoreService {
@@ -40,5 +40,10 @@ class FirestoreService {
       return WeekPlan.fromJson(jsonData);
     }
     return null;
+  }
+
+  Future<bool> hasSavedPlan() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    return prefs.containsKey('savedPlan');
   }
 }

@@ -33,8 +33,9 @@ class _PlanScreenState extends State<PlanScreen> {
 
   Future<void> _fetchPlanFromFirestore() async {
     await CheckedIngredientsManager.clearCheckedIngredients(); // チェック情報を破棄
+    WeekPlan newPlan = await _firestoreService.fetchPlansFromFirestore();
     setState(() {
-      _weekPlanFuture = _firestoreService.fetchPlansFromFirestore();
+      _weekPlanFuture = Future.value(newPlan);
     });
   }
 
@@ -51,44 +52,43 @@ class _PlanScreenState extends State<PlanScreen> {
           ),
         ],
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: FutureBuilder<WeekPlan>(
-              future: _weekPlanFuture,
-              builder: (context, snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(child: CircularProgressIndicator());
-                } else if (snapshot.hasError) {
-                  return Center(child: Text('エラーが発生しました: ${snapshot.error}'));
-                } else if (snapshot.hasData) {
-                  final weekPlan = snapshot.data!;
-                  return PlanList(weekPlan: weekPlan);
-                } else {
-                  return Center(child: Text('プランが見つかりませんでした'));
-                }
-              },
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: ElevatedButton(
-              onPressed: () async {
-                final weekPlan = await _weekPlanFuture;
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ShoppingListScreen(weekPlan: weekPlan),
+      body: FutureBuilder<WeekPlan>(
+        future: _weekPlanFuture,
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          } else if (snapshot.hasError) {
+            return Center(child: Text('エラーが発生しました: ${snapshot.error}'));
+          } else if (snapshot.hasData) {
+            final weekPlan = snapshot.data!;
+            return Column(
+              children: [
+                Expanded(
+                  child: PlanList(weekPlan: weekPlan),
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ShoppingListScreen(weekPlan: weekPlan),
+                        ),
+                      );
+                    },
+                    child: Text('買い物リスト'),
+                    style: ElevatedButton.styleFrom(
+                      padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                    ),
                   ),
-                );
-              },
-              child: Text('買い物リスト'),
-              style: ElevatedButton.styleFrom(
-                padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-              ),
-            ),
-          ),
-        ],
+                ),
+              ],
+            );
+          } else {
+            return Center(child: Text('プランが見つかりませんでした'));
+          }
+        },
       ),
     );
   }
