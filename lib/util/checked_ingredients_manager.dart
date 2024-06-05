@@ -1,21 +1,25 @@
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:convert';
-import 'package:myapp/models/checked_ingredient.dart';
+import '../models/checked_ingredient.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class CheckedIngredientsManager {
-  static const _key = 'checkedIngredients';
+  static Future<String> _getKey() async {
+    final user = FirebaseAuth.instance.currentUser;
+    return user != null && !user.isAnonymous ? user.uid : 'guest';
+  }
 
-  static Future<void> saveCheckedIngredients(
-      List<CheckedIngredient> ingredients) async {
+  static Future<void> saveCheckedIngredients(List<CheckedIngredient> ingredients) async {
     final prefs = await SharedPreferences.getInstance();
-    final ingredientsJson = jsonEncode(
-        ingredients.map((ingredient) => ingredient.toJson()).toList());
-    await prefs.setString(_key, ingredientsJson);
+    final key = await _getKey();
+    final ingredientsJson = jsonEncode(ingredients.map((ingredient) => ingredient.toJson()).toList());
+    await prefs.setString('checkedIngredients_$key', ingredientsJson);
   }
 
   static Future<List<CheckedIngredient>> loadCheckedIngredients() async {
     final prefs = await SharedPreferences.getInstance();
-    final ingredientsJson = prefs.getString(_key);
+    final key = await _getKey();
+    final ingredientsJson = prefs.getString('checkedIngredients_$key');
     if (ingredientsJson == null) {
       return [];
     }
@@ -25,6 +29,7 @@ class CheckedIngredientsManager {
 
   static Future<void> clearCheckedIngredients() async {
     final prefs = await SharedPreferences.getInstance();
-    await prefs.remove(_key);
+    final key = await _getKey();
+    await prefs.remove('checkedIngredients_$key');
   }
 }

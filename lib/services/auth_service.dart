@@ -43,7 +43,7 @@ class AuthService {
     try {
       await _googleSignIn.signOut();
       await _auth.signOut();
-      print("Signed out successfully");
+      print("Signed out successfully.");
     } catch (e) {
       print("Failed to sign out: $e");
     }
@@ -51,6 +51,8 @@ class AuthService {
 
   Future<bool> get hasSavedPlan async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.containsKey('savedPlan');
+    final user = _auth.currentUser;
+    final key = user != null && !user.isAnonymous ? user.uid : 'guest';
+    return prefs.containsKey('savedPlan_$key');
   }
 }
