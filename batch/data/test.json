@@ -1,69 +1,32 @@
 {
-    "plans": {
-      "examplePlanId": {
-        "days": [
-          {
-            "date": "2024-06-10T00:00:00.000Z",
-            "weekday": "月",
-            "menu": {
-              "breakfast": {
-                "name": "和風朝食",
-                "ingredients": [
-                  { "name": "卵", "quantity": 2, "unit": "個" },
-                  { "name": "牛乳", "quantity": 200, "unit": "ml" }
-                ],
-                "recipe": { "description": "卵を焼いて、牛乳を飲む" }
-              },
-              "lunch": {
-                "name": "鶏肉と野菜の炒め物",
-                "ingredients": [
-                  { "name": "鶏肉", "quantity": 300, "unit": "g" },
-                  { "name": "野菜", "quantity": 150, "unit": "g" }
-                ],
-                "recipe": { "description": "鶏肉を焼いて、野菜を添える" }
-              },
-              "dinner": {
-                "name": "卵焼きとご飯",
-                "ingredients": [
-                  { "name": "卵", "quantity": 1, "unit": "個" },
-                  { "name": "ご飯", "quantity": 1, "unit": "杯" }
-                ],
-                "recipe": { "description": "卵焼きを作って、ご飯と一緒に食べる" }
-              }
+    "days": [
+        {
+        "menu": {
+            "breakfast": {
+            "name": "和風朝食",
+            "ingredients": [
+                { "name": "卵", "quantity": 2, "unit": "個" },
+                { "name": "牛乳", "quantity": 200, "unit": "ml" }
+            ],
+            "recipe": { "description": "卵を焼いて、牛乳を飲む" }
+            },
+            "lunch": {
+            "name": "鶏肉と野菜の炒め物",
+            "ingredients": [
+                { "name": "鶏肉", "quantity": 300, "unit": "g" },
+                { "name": "野菜", "quantity": 150, "unit": "g" }
+            ],
+            "recipe": { "description": "鶏肉を焼いて、野菜を添える" }
+            },
+            "dinner": {
+            "name": "卵焼きとご飯",
+            "ingredients": [
+                { "name": "卵", "quantity": 1, "unit": "個" },
+                { "name": "ご飯", "quantity": 1, "unit": "杯" }
+            ],
+            "recipe": { "description": "卵焼きを作って、ご飯と一緒に食べる" }
             }
-          },
-          {
-            "date": "2024-06-11T00:00:00.000Z",
-            "weekday": "火",
-            "menu": {
-              "breakfast": {
-                "name": "パンとバター",
-                "ingredients": [
-                  { "name": "パン", "quantity": 2, "unit": "枚" },
-                  { "name": "バター", "quantity": 10, "unit": "g" }
-                ],
-                "recipe": { "description": "パンにバターを塗って食べる" }
-              },
-              "lunch": {
-                "name": "豚肉とキャベツの炒め物",
-                "ingredients": [
-                  { "name": "豚肉", "quantity": 200, "unit": "g" },
-                  { "name": "キャベツ", "quantity": 100, "unit": "g" }
-                ],
-                "recipe": { "description": "豚肉とキャベツを炒める" }
-              },
-              "dinner": {
-                "name": "焼き魚とご飯",
-                "ingredients": [
-                  { "name": "魚", "quantity": 1, "unit": "切れ" },
-                  { "name": "ご飯", "quantity": 1, "unit": "杯" }
-                ],
-                "recipe": { "description": "魚を焼いて、ご飯と一緒に食べる" }
-              }
-            }
-          }
-        ]
-      }
-    }
-  }
-  
+        }
+        }
+    ]
+}

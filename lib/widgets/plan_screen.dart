@@ -1,22 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:myapp/services/firestore_service.dart';
+import 'package:myapp/logics/plan.dart';
 import 'package:myapp/models/week_plan.dart';
 import 'package:myapp/widgets/plan_list.dart';
 import 'package:myapp/widgets/shopping_list_screen.dart';
 
 class PlanScreen extends StatefulWidget {
+  final Future<String> Function(String) loadJsonFunction;
+
+  PlanScreen({required this.loadJsonFunction});
+
   @override
   _PlanScreenState createState() => _PlanScreenState();
 }
 
 class _PlanScreenState extends State<PlanScreen> {
-  final FirestoreService _firestoreService = FirestoreService();
   late Future<WeekPlan> _weekPlanFuture;
+  final DateTime _startDate = DateTime.now();
 
   @override
   void initState() {
     super.initState();
-    _weekPlanFuture = _firestoreService.fetchPlansFromFirestore();
+    _weekPlanFuture = loadAndCreatePlan(_startDate);
+  }
+
+  Future<WeekPlan> loadAndCreatePlan(DateTime startDate) async {
+    String jsonString = await widget.loadJsonFunction('assets/plan.json');
+    return createPlanFromJson(jsonString, startDate);
   }
 
   @override
