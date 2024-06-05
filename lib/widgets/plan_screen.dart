@@ -3,7 +3,8 @@ import 'package:myapp/services/firestore_service.dart';
 import 'package:myapp/models/week_plan.dart';
 import 'package:myapp/widgets/plan_list.dart';
 import 'package:myapp/widgets/shopping_list_screen.dart';
-import 'package:myapp/util/checked_ingredients_manager.dart'; // チェック情報管理
+import 'package:myapp/util/checked_ingredients_manager.dart';
+import 'package:myapp/widgets/home_screen.dart'; // ホーム画面をインポート
 
 class PlanScreen extends StatefulWidget {
   @override
@@ -39,6 +40,15 @@ class _PlanScreenState extends State<PlanScreen> {
     });
   }
 
+  Future<void> _deletePlan(BuildContext context) async {
+    await _firestoreService.deleteSavedPlan();
+    Navigator.pushAndRemoveUntil(
+      context,
+      MaterialPageRoute(builder: (context) => HomeScreen()),
+      (Route<dynamic> route) => false,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,6 +59,11 @@ class _PlanScreenState extends State<PlanScreen> {
             icon: Icon(Icons.refresh),
             tooltip: 'プランを再作成する',
             onPressed: _fetchPlanFromFirestore,
+          ),
+          IconButton(
+            icon: Icon(Icons.delete),
+            tooltip: 'プランを削除する',
+            onPressed: () => _deletePlan(context),
           ),
         ],
       ),

@@ -46,4 +46,9 @@ class FirestoreService {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     return prefs.containsKey('savedPlan');
   }
+
+  Future<void> deleteSavedPlan() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.remove('savedPlan');
+  }
 }
