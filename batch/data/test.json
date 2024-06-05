@@ -1,32 +1,140 @@
 {
-    "days": [
-        {
-        "menu": {
-            "breakfast": {
-            "name": "和風朝食",
-            "ingredients": [
-                { "name": "卵", "quantity": 2, "unit": "個" },
-                { "name": "牛乳", "quantity": 200, "unit": "ml" }
-            ],
-            "recipe": { "description": "卵を焼いて、牛乳を飲む" }
-            },
-            "lunch": {
-            "name": "鶏肉と野菜の炒め物",
-            "ingredients": [
-                { "name": "鶏肉", "quantity": 300, "unit": "g" },
-                { "name": "野菜", "quantity": 150, "unit": "g" }
-            ],
-            "recipe": { "description": "鶏肉を焼いて、野菜を添える" }
-            },
-            "dinner": {
-            "name": "卵焼きとご飯",
-            "ingredients": [
-                { "name": "卵", "quantity": 1, "unit": "個" },
-                { "name": "ご飯", "quantity": 1, "unit": "杯" }
-            ],
-            "recipe": { "description": "卵焼きを作って、ご飯と一緒に食べる" }
+    "plans": {
+      "examplePlanId": {
+        "days": [
+          {
+            "date": "2024-06-10T00:00:00.000Z",
+            "weekday": "月",
+            "menu": {
+              "breakfast": {
+                "name": "和風朝食",
+                "ingredients": [
+                  { "name": "卵", "quantity": 2, "unit": "個" },
+                  { "name": "牛乳", "quantity": 200, "unit": "ml" }
+                ],
+                "recipe": { "description": "卵を焼いて、牛乳を飲む" }
+              },
+              "lunch": {
+                "name": "鶏肉と野菜の炒め物",
+                "ingredients": [
+                  { "name": "鶏肉", "quantity": 300, "unit": "g" },
+                  { "name": "野菜", "quantity": 150, "unit": "g" }
+                ],
+                "recipe": { "description": "鶏肉を焼いて、野菜を添える" }
+              },
+              "dinner": {
+                "name": "卵焼きとご飯",
+                "ingredients": [
+                  { "name": "卵", "quantity": 1, "unit": "個" },
+                  { "name": "ご飯", "quantity": 1, "unit": "杯" }
+                ],
+                "recipe": { "description": "卵焼きを作って、ご飯と一緒に食べる" }
+              }
             }
-        }
-        }
-    ]
-}
+          },
+          {
+            "date": "2024-06-11T00:00:00.000Z",
+            "weekday": "火",
+            "menu": {
+              "breakfast": {
+                "name": "パンとバター",
+                "ingredients": [
+                  { "name": "パン", "quantity": 2, "unit": "枚" },
+                  { "name": "バター", "quantity": 10, "unit": "g" }
+                ],
+                "recipe": { "description": "パンにバターを塗って食べる" }
+              },
+              "lunch": {
+                "name": "豚肉とキャベツの炒め物",
+                "ingredients": [
+                  { "name": "豚肉", "quantity": 200, "unit": "g" },
+                  { "name": "キャベツ", "quantity": 100, "unit": "g" }
+                ],
+                "recipe": { "description": "豚肉とキャベツを炒める" }
+              },
+              "dinner": {
+                "name": "焼き魚とご飯",
+                "ingredients": [
+                  { "name": "魚", "quantity": 1, "unit": "切れ" },
+                  { "name": "ご飯", "quantity": 1, "unit": "杯" }
+                ],
+                "recipe": { "description": "魚を焼いて、ご飯と一緒に食べる" }
+              }
+            }
+          }
+        ]P
+      },
+      "anotherPlanId": {
+        "days": [
+          {
+            "date": "2024-06-12T00:00:00.000Z",
+            "weekday": "水",
+            "menu": {
+              "breakfast": {
+                "name": "フルーツサラダ",
+                "ingredients": [
+                  { "name": "リンゴ", "quantity": 1, "unit": "個" },
+                  { "name": "バナナ", "quantity": 1, "unit": "本" },
+                  { "name": "ヨーグルト", "quantity": 100, "unit": "g" }
+                ],
+                "recipe": { "description": "フルーツを切ってヨーグルトと混ぜる" }
+              },
+              "lunch": {
+                "name": "ビーフカレー",
+                "ingredients": [
+                  { "name": "牛肉", "quantity": 200, "unit": "g" },
+                  { "name": "玉ねぎ", "quantity": 1, "unit": "個" },
+                  { "name": "人参", "quantity": 1, "unit": "本" },
+                  { "name": "じゃがいも", "quantity": 2, "unit": "個" },
+                  { "name": "カレールー", "quantity": 100, "unit": "g" }
+                ],
+                "recipe": { "description": "具材を炒めて煮込み、カレールーを加える" }
+              },
+              "dinner": {
+                "name": "スパゲッティミートソース",
+                "ingredients": [
+                  { "name": "スパゲッティ", "quantity": 200, "unit": "g" },
+                  { "name": "ミートソース", "quantity": 150, "unit": "g" }
+                ],
+                "recipe": { "description": "スパゲッティを茹でて、ミートソースをかける" }
+              }
+            }
+          },
+          {
+            "date": "2024-06-13T00:00:00.000Z",
+            "weekday": "木",
+            "menu": {
+              "breakfast": {
+                "name": "トーストとスクランブルエッグ",
+                "ingredients": [
+                  { "name": "パン", "quantity": 2, "unit": "枚" },
+                  { "name": "卵", "quantity": 2, "unit": "個" },
+                  { "name": "バター", "quantity": 10, "unit": "g" }
+                ],
+                "recipe": { "description": "パンをトーストし、卵を炒める" }
+              },
+              "lunch": {
+                "name": "チキンサラダ",
+                "ingredients": [
+                  { "name": "鶏胸肉", "quantity": 200, "unit": "g" },
+                  { "name": "レタス", "quantity": 100, "unit": "g" },
+                  { "name": "トマト", "quantity": 1, "unit": "個" },
+                  { "name": "ドレッシング", "quantity": 50, "unit": "ml" }
+                ],
+                "recipe": { "description": "鶏胸肉を焼いて、野菜と混ぜる" }
+              },
+              "dinner": {
+                "name": "照り焼きチキン",
+                "ingredients": [
+                  { "name": "鶏もも肉", "quantity": 200, "unit": "g" },
+                  { "name": "照り焼きソース", "quantity": 50, "unit": "ml" }
+                ],
+                "recipe": { "description": "鶏もも肉を焼いて、照り焼きソースをかける" }
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+  
