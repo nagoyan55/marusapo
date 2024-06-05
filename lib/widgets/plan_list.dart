@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:myapp/models/week_plan.dart';
-import 'meal_detail_screen.dart';
+import '../screens/meal_detail_screen.dart';
 
 class PlanList extends StatelessWidget {
   final WeekPlan weekPlan;

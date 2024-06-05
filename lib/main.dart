@@ -1,34 +1,56 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'firebase_options.dart';
 import 'package:flutter/material.dart';
-import 'package:myapp/widgets/plan_screen.dart';
-import 'package:myapp/services/firestore_service.dart';
-import 'package:myapp/widgets/home_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:myapp/screens/sign_in_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:myapp/screens/plan_screen.dart';
+import 'package:myapp/services/auth_service.dart';
+import 'firebase_options.dart';
+import 'screens/home_screen.dart';
+import 'services/firestore_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-
-  // ローカルにプランがあるかどうかを確認
-  FirestoreService firestoreService = FirestoreService();
-  bool hasSavedPlan = await firestoreService.hasSavedPlan();
-
-  runApp(MyApp(hasSavedPlan: hasSavedPlan));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  final bool hasSavedPlan;
-
-  MyApp({required this.hasSavedPlan});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'こんだてまるさぽくん',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        Provider<AuthService>(
+          create: (_) => AuthService(),
+        ),
+      ],
+      child: MaterialApp(
+        title: 'こんだてまるさぽくん',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        home: FutureBuilder<bool>(
+          future: _checkSavedPlan(),
+          builder: (context, snapshot) {
+            final authService = Provider.of<AuthService>(context);
+            final user = authService.currentUser;
+            if(user == null){
+              return SignInScreen();
+            } else if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasData && snapshot.data == true) {
+              return PlanScreen();
+            } else {
+              return HomeScreen(hasSavedPlan: snapshot.data == true);
+            }
+          },
+        ),
       ),
-      home: hasSavedPlan ? PlanScreen() : HomeScreen(hasSavedPlan: hasSavedPlan),
     );
+  }
+
+  Future<bool> _checkSavedPlan() async {
+    final firestoreService = FirestoreService();
+    return await firestoreService.hasSavedPlan();
   }
 }
