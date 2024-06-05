@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../services/auth_service.dart';
 import 'sign_in_screen.dart';
 import 'plan_screen.dart';
@@ -28,7 +29,7 @@ class HomeScreen extends StatelessWidget {
               child: CircleAvatar(
                 backgroundImage: user.photoURL != null
                     ? NetworkImage(user.photoURL!)
-                    : AssetImage('assets/default_user_icon.png'),
+                    : AssetImage('assets/default_user_icon.png') as ImageProvider,
               ),
             ),
           ],
@@ -45,6 +46,42 @@ class HomeScreen extends StatelessWidget {
                 );
               } catch (e) {
                 print("Error signing out: $e");
+              }
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.delete_forever),
+            tooltip: 'ローカルデータを削除します',
+            onPressed: () async {
+              bool confirmed = await showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text('確認'),
+                    content: Text('ローカルデータをすべて削除しますか？'),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(false);
+                        },
+                        child: Text('キャンセル'),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(true);
+                        },
+                        child: Text('削除'),
+                      ),
+                    ],
+                  );
+                },
+              );
+              if (confirmed) {
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                await prefs.clear();
+                ScaffoldMessenger.of(context).showSnackBar(
+                  SnackBar(content: Text('ローカルデータが削除されました')),
+                );
               }
             },
           ),

@@ -45,6 +45,7 @@ class _PlanScreenState extends State<PlanScreen> {
 
   Future<void> _deletePlan(BuildContext context) async {
     await _firestoreService.deleteSavedPlan();
+    await CheckedIngredientsManager.clearCheckedIngredients();
     Navigator.pushAndRemoveUntil(
       context,
       MaterialPageRoute(builder: (context) => HomeScreen(hasSavedPlan: false)),
