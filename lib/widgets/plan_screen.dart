@@ -3,6 +3,7 @@ import 'package:myapp/services/firestore_service.dart';
 import 'package:myapp/models/week_plan.dart';
 import 'package:myapp/widgets/plan_list.dart';
 import 'package:myapp/widgets/shopping_list_screen.dart';
+import 'package:myapp/util/checked_ingredients_manager.dart'; // チェック情報管理
 
 class PlanScreen extends StatefulWidget {
   @override
@@ -31,6 +32,7 @@ class _PlanScreenState extends State<PlanScreen> {
   }
 
   Future<void> _fetchPlanFromFirestore() async {
+    await CheckedIngredientsManager.clearCheckedIngredients(); // チェック情報を破棄
     setState(() {
       _weekPlanFuture = _firestoreService.fetchPlansFromFirestore();
     });

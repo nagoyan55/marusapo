@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:myapp/models/week_plan.dart';
+import 'package:myapp/util/checked_ingredients_manager.dart'; // チェック情報管理
 import 'dart:convert';
 
 class FirestoreService {
@@ -14,6 +15,9 @@ class FirestoreService {
       
       // 保存
       await savePlanToPreferences(weekPlan);
+      
+      // チェック情報を破棄
+      await CheckedIngredientsManager.clearCheckedIngredients();
       
       return weekPlan;
     } catch (e) {
