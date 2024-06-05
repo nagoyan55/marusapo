@@ -2,14 +2,25 @@ import 'package:firebase_core/firebase_core.dart';
 import 'firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:myapp/widgets/plan_screen.dart';
+import 'package:myapp/services/firestore_service.dart';
+import 'package:myapp/widgets/home_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(MyApp());
+
+  // ローカルにプランがあるかどうかを確認
+  FirestoreService firestoreService = FirestoreService();
+  bool hasSavedPlan = await firestoreService.hasSavedPlan();
+
+  runApp(MyApp(hasSavedPlan: hasSavedPlan));
 }
 
 class MyApp extends StatelessWidget {
+  final bool hasSavedPlan;
+
+  MyApp({required this.hasSavedPlan});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -17,36 +28,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(),
-    );
-  }
-}
-
-class HomeScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('こんだてまるさぽくん'),
-      ),
-      body: Center(
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(
-            shape: CircleBorder(),
-            padding: EdgeInsets.all(40),
-            minimumSize: Size(160, 160),
-          ),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => PlanScreen(),
-              ),
-            );
-          },
-          child: Text('プラン作成', style: TextStyle(fontSize: 18)),
-        ),
-      ),
+      home: hasSavedPlan ? PlanScreen() : HomeScreen(hasSavedPlan: hasSavedPlan),
     );
   }
 }
