@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "837062649137",
+    "project_id": "marusapo-5829411",
+    "storage_bucket": "marusapo-5829411.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:837062649137:android:73702db32643d35af2fc10",
+        "android_client_info": {
+          "package_name": "com.example.marusapo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCoWEtHZK3lBi9xKA8u32AMXQv3FdA3KT8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

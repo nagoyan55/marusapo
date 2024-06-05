@@ -1,13 +1,1 @@
-{
-  "hosting": {
-    "source": ".",
-    "ignore": [
-      "firebase.json",
-      "**/.*",
-      "**/node_modules/**"
-    ],
-    "frameworksBackend": {
-      "region": "us-central1"
-    }
-  }
-}
+{"hosting":{"source":".","ignore":["firebase.json","**/.*","**/node_modules/**"],"frameworksBackend":{"region":"us-central1"}},"flutter":{"platforms":{"android":{"default":{"projectId":"marusapo-5829411","appId":"1:837062649137:android:73702db32643d35af2fc10","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"marusapo-5829411","configurations":{"android":"1:837062649137:android:73702db32643d35af2fc10","web":"1:837062649137:web:c666cad401698cfcf2fc10"}}}}}}
