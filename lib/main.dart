@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:myapp/screens/sign_in_screen.dart';
 import 'package:provider/provider.dart';
 import 'package:myapp/screens/plan_screen.dart';
 import 'package:myapp/services/auth_service.dart';
@@ -31,7 +32,11 @@ class MyApp extends StatelessWidget {
         home: FutureBuilder<bool>(
           future: _checkSavedPlan(),
           builder: (context, snapshot) {
-            if (snapshot.connectionState == ConnectionState.waiting) {
+            final authService = Provider.of<AuthService>(context);
+            final user = authService.currentUser;
+            if(user == null){
+              return SignInScreen();
+            } else if (snapshot.connectionState == ConnectionState.waiting) {
               return Center(child: CircularProgressIndicator());
             } else if (snapshot.hasData && snapshot.data == true) {
               return PlanScreen();
