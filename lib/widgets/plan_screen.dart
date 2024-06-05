@@ -16,7 +16,18 @@ class _PlanScreenState extends State<PlanScreen> {
   @override
   void initState() {
     super.initState();
-    _weekPlanFuture = _firestoreService.fetchPlansFromFirestore();
+    _loadPlan();
+  }
+
+  Future<void> _loadPlan() async {
+    WeekPlan? savedPlan = await _firestoreService.loadPlanFromPreferences();
+    setState(() {
+      if (savedPlan != null) {
+        _weekPlanFuture = Future.value(savedPlan);
+      } else {
+        _weekPlanFuture = _firestoreService.fetchPlansFromFirestore();
+      }
+    });
   }
 
   @override
