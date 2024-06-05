@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: hasSavedPlan ? PlanScreen() : HomeScreen(),
+      home: hasSavedPlan ? PlanScreen() : HomeScreen(hasSavedPlan: hasSavedPlan),
     );
   }
 }

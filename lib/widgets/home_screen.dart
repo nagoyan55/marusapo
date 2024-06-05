@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:myapp/widgets/plan_screen.dart';
 
 class HomeScreen extends StatelessWidget {
+  final bool hasSavedPlan;
+
+  HomeScreen({required this.hasSavedPlan});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,14 +20,13 @@ class HomeScreen extends StatelessWidget {
             minimumSize: Size(160, 160),
           ),
           onPressed: () {
-            Navigator.push(
+            Navigator.pushAndRemoveUntil(
               context,
-              MaterialPageRoute(
-                builder: (context) => PlanScreen(),
-              ),
+              MaterialPageRoute(builder: (context) => PlanScreen()),
+              (Route<dynamic> route) => false,
             );
           },
-          child: Text('プラン作成', style: TextStyle(fontSize: 18)),
+          child: Text(hasSavedPlan ? 'プランを見る' : 'プラン作成', style: TextStyle(fontSize: 18)),
         ),
       ),
     );

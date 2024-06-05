@@ -4,7 +4,7 @@ import 'package:myapp/models/week_plan.dart';
 import 'package:myapp/widgets/plan_list.dart';
 import 'package:myapp/widgets/shopping_list_screen.dart';
 import 'package:myapp/util/checked_ingredients_manager.dart';
-import 'package:myapp/widgets/home_screen.dart'; // ホーム画面をインポート
+import 'package:myapp/widgets/home_screen.dart';
 
 class PlanScreen extends StatefulWidget {
   @override
@@ -44,66 +44,69 @@ class _PlanScreenState extends State<PlanScreen> {
     await _firestoreService.deleteSavedPlan();
     Navigator.pushAndRemoveUntil(
       context,
-      MaterialPageRoute(builder: (context) => HomeScreen()),
+      MaterialPageRoute(builder: (context) => HomeScreen(hasSavedPlan: false)),
       (Route<dynamic> route) => false,
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('こんだてまるさぽくん'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.refresh),
-            tooltip: 'プランを再作成する',
-            onPressed: _fetchPlanFromFirestore,
-          ),
-          IconButton(
-            icon: Icon(Icons.delete),
-            tooltip: 'プランを削除する',
-            onPressed: () => _deletePlan(context),
-          ),
-        ],
-      ),
-      body: FutureBuilder<WeekPlan>(
-        future: _weekPlanFuture,
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
-          } else if (snapshot.hasError) {
-            return Center(child: Text('エラーが発生しました: ${snapshot.error}'));
-          } else if (snapshot.hasData) {
-            final weekPlan = snapshot.data!;
-            return Column(
-              children: [
-                Expanded(
-                  child: PlanList(weekPlan: weekPlan),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ShoppingListScreen(weekPlan: weekPlan),
-                        ),
-                      );
-                    },
-                    child: Text('買い物リスト'),
-                    style: ElevatedButton.styleFrom(
-                      padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+    return WillPopScope(
+      onWillPop: () async => false, // ナビゲーションバックを無効化
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('こんだてまるさぽくん'),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.refresh),
+              tooltip: 'プランを再作成する',
+              onPressed: _fetchPlanFromFirestore,
+            ),
+            IconButton(
+              icon: Icon(Icons.delete),
+              tooltip: 'プランを削除する',
+              onPressed: () => _deletePlan(context),
+            ),
+          ],
+        ),
+        body: FutureBuilder<WeekPlan>(
+          future: _weekPlanFuture,
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            } else if (snapshot.hasError) {
+              return Center(child: Text('エラーが発生しました: ${snapshot.error}'));
+            } else if (snapshot.hasData) {
+              final weekPlan = snapshot.data!;
+              return Column(
+                children: [
+                  Expanded(
+                    child: PlanList(weekPlan: weekPlan),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: ElevatedButton(
+                      onPressed: () async {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => ShoppingListScreen(weekPlan: weekPlan),
+                          ),
+                        );
+                      },
+                      child: Text('買い物リスト'),
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                      ),
                     ),
                   ),
-                ),
-              ],
-            );
-          } else {
-            return Center(child: Text('プランが見つかりませんでした'));
-          }
-        },
+                ],
+              );
+            } else {
+              return Center(child: Text('プランが見つかりませんでした'));
+            }
+          },
+        ),
       ),
     );
   }
