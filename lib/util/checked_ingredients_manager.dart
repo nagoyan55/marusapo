@@ -22,4 +22,9 @@ class CheckedIngredientsManager {
     final List<dynamic> decodedJson = jsonDecode(ingredientsJson);
     return decodedJson.map((json) => CheckedIngredient.fromJson(json)).toList();
   }
+
+  static Future<void> clearCheckedIngredients() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove(_key);
+  }
 }
