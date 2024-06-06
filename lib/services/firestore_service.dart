@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:myapp/models/week_plan.dart';
 import 'dart:convert';
+import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirestoreService {
@@ -12,10 +13,30 @@ class FirestoreService {
     return user != null && !user.isAnonymous ? user.uid : 'guest';
   }
 
-  Future<WeekPlan> fetchPlansFromFirestore() async {
+  Future<int> getPlanCount() async {
+    AggregateQuerySnapshot countSnapshot = await _db.collection('plans').count().get();
+    return countSnapshot.count!;
+  }
+
+  Future<WeekPlan> fetchRandomPlanFromFirestore() async {
     try {
-      DocumentSnapshot<Map<String, dynamic>> planDoc = await _db.collection('plans').doc('examplePlanId').get();
-      Map<String, dynamic> data = planDoc.data()!;
+      int planCount = await getPlanCount();
+      if (planCount == 0) {
+        throw Exception('No plans found in Firestore.');
+      }
+      int randomIndex = Random().nextInt(planCount);
+      QuerySnapshot<Map<String, dynamic>> querySnapshot = await _db.collection('plans')
+          .orderBy(FieldPath.documentId)
+          .limit(1)
+          .startAt([randomIndex.toString()])
+          .get();
+      
+      if (querySnapshot.docs.isEmpty) {
+        throw Exception('Random plan not found.');
+      }
+      
+      DocumentSnapshot<Map<String, dynamic>> randomPlanDoc = querySnapshot.docs.first;
+      Map<String, dynamic> data = randomPlanDoc.data()!;
       WeekPlan weekPlan = WeekPlan.fromJson(data);
 
       // 保存
@@ -23,7 +44,7 @@ class FirestoreService {
 
       return weekPlan;
     } catch (e) {
-      print('Error fetching plan from Firestore: $e');
+      print('Error fetching random plan from Firestore: $e');
       rethrow;
     }
   }
