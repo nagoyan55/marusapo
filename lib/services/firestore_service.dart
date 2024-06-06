@@ -25,18 +25,13 @@ class FirestoreService {
         throw Exception('No plans found in Firestore.');
       }
       int randomIndex = Random().nextInt(planCount);
-      QuerySnapshot<Map<String, dynamic>> querySnapshot = await _db.collection('plans')
-          .orderBy(FieldPath.documentId)
-          .limit(1)
-          .startAt([randomIndex.toString()])
-          .get();
+      DocumentSnapshot<Map<String, dynamic>> snapshot = await _db.collection('plans').doc((randomIndex+1).toString()).get();
       
-      if (querySnapshot.docs.isEmpty) {
+      if (snapshot.exists == false) {
         throw Exception('Random plan not found.');
       }
-      
-      DocumentSnapshot<Map<String, dynamic>> randomPlanDoc = querySnapshot.docs.first;
-      Map<String, dynamic> data = randomPlanDoc.data()!;
+
+      Map<String, dynamic> data = snapshot.data()!;
       WeekPlan weekPlan = WeekPlan.fromJson(data);
 
       // 保存
