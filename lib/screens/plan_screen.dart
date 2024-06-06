@@ -31,14 +31,14 @@ class _PlanScreenState extends State<PlanScreen> {
       if (savedPlan != null) {
         _weekPlanFuture = Future.value(savedPlan);
       } else {
-        _weekPlanFuture = _firestoreService.fetchPlansFromFirestore();
+        _weekPlanFuture = _firestoreService.fetchRandomPlanFromFirestore();
       }
     });
   }
 
-  Future<void> _fetchPlanFromFirestore() async {
+  Future<void> _fetchRandomPlanFromFirestore() async {
     await CheckedIngredientsManager.clearCheckedIngredients();
-    WeekPlan newPlan = await _firestoreService.fetchPlansFromFirestore();
+    WeekPlan newPlan = await _firestoreService.fetchRandomPlanFromFirestore();
     setState(() {
       _weekPlanFuture = Future.value(newPlan);
     });
@@ -67,7 +67,7 @@ class _PlanScreenState extends State<PlanScreen> {
             IconButton(
               icon: Icon(Icons.refresh),
               tooltip: 'プランを再作成する',
-              onPressed: _fetchPlanFromFirestore,
+              onPressed: _fetchRandomPlanFromFirestore,
             ),
             IconButton(
               icon: Icon(Icons.delete),
@@ -109,7 +109,7 @@ class _PlanScreenState extends State<PlanScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => ShoppingListScreen(weekPlan: weekPlan),
+                            builder: (context) => ShoppingListScreen(weekPlan: weekPlanWithDate),
                           ),
                         );
                       },

@@ -1,19 +1,22 @@
 {
   "plans": {
-    "examplePlanId": {
+    "1": {
       "days": [
         {
           "menu": {
             "breakfast": {
-              "name": "和風朝食",
+              "name": "和風おにぎりセット",
               "ingredients": [
-                { "name": "ごはん", "quantity": 1, "unit": "杯" },
-                { "name": "納豆", "quantity": 1, "unit": "パック" },
-                { "name": "豆腐", "quantity": 100, "unit": "g" },
-                { "name": "わかめ", "quantity": 5, "unit": "g" },
-                { "name": "味噌", "quantity": 20, "unit": "g" }
+                { "name": "白ごはん", "quantity": 200, "unit": "g" },
+                { "name": "鮭フレーク", "quantity": 20, "unit": "g" },
+                { "name": "梅干し", "quantity": 1, "unit": "個" },
+                { "name": "のり", "quantity": 1, "unit": "枚" },
+                { "name": "ほうれん草のおひたし", "quantity": 50, "unit": "g" },
+                { "name": "味噌汁", "quantity": 1, "unit": "杯" }
               ],
-              "recipe": { "description": "ごはんを炊き、納豆を混ぜる。味噌汁は豆腐とわかめを入れて作る。" }
+              "recipe": {
+                "description": "1. 白ごはんを炊く。\n2. ごはんをにぎり、鮭フレーク、梅干しを中に入れておにぎりを作る。\n3. おにぎりにのりを巻く。\n4. ほうれん草を茹でておひたしを作る。\n5. 味噌汁を作る。"
+              }
             },
             "lunch": {
               "name": "鶏の照り焼き",
@@ -27,7 +30,9 @@
                 { "name": "みりん", "quantity": 20, "unit": "ml" },
                 { "name": "砂糖", "quantity": 10, "unit": "g" }
               ],
-              "recipe": { "description": "鶏肉を醤油、みりん、砂糖で照り焼きにし、サラダとごはんを添える。" }
+              "recipe": {
+                "description": "1. 鶏肉を一口大に切る。\n2. 醤油、みりん、砂糖を混ぜて照り焼きのタレを作る。\n3. フライパンで鶏肉を焼き、タレを加えて煮詰める。\n4. レタス、トマト、キュウリを切り、サラダを作る。\n5. ごはんを炊いて、鶏の照り焼きとサラダを添える。"
+              }
             },
             "dinner": {
               "name": "焼き魚（鮭）",
@@ -42,7 +47,9 @@
                 { "name": "砂糖", "quantity": 10, "unit": "g" },
                 { "name": "みりん", "quantity": 20, "unit": "ml" }
               ],
-              "recipe": { "description": "鮭を焼き、ひじきの煮物とごはんを添える。" }
+              "recipe": {
+                "description": "1. 鮭を焼く。\n2. ひじき、ごぼう、にんじん、油揚げを炒める。\n3. 醤油、砂糖、みりんを加えて煮詰める。\n4. ごはんを炊いて、焼き魚とひじきの煮物を添える。"
+              }
             }
           }
         },
@@ -56,7 +63,9 @@
                 { "name": "レタス", "quantity": 50, "unit": "g" },
                 { "name": "トマト", "quantity": 1, "unit": "個" }
               ],
-              "recipe": { "description": "パンをトーストし、目玉焼きを作り、サラダを添える。" }
+              "recipe": {
+                "description": "1. パンをトーストする。\n2. 卵をフライパンで焼いて目玉焼きを作る。\n3. レタスとトマトを切り、サラダを作る。\n4. トーストに目玉焼きとサラダを添える。"
+              }
             },
             "lunch": {
               "name": "野菜炒め（豚肉、キャベツ、ピーマン）",
@@ -68,7 +77,9 @@
                 { "name": "醤油", "quantity": 30, "unit": "ml" },
                 { "name": "みりん", "quantity": 20, "unit": "ml" }
               ],
-              "recipe": { "description": "豚肉と野菜を炒め、醤油とみりんで味付けし、ごはんを添える。" }
+              "recipe": {
+                "description": "1. 豚肉、キャベツ、ピーマンを切る。\n2. フライパンで豚肉と野菜を炒める。\n3. 醤油とみりんを加えて味付けする。\n4. ごはんを炊いて、野菜炒めを添える。"
+              }
             },
             "dinner": {
               "name": "麻婆豆腐",
@@ -84,7 +95,104 @@
                 { "name": "豆板醤", "quantity": 10, "unit": "g" },
                 { "name": "ごはん", "quantity": 1, "unit": "杯" }
               ],
-              "recipe": { "description": "豆腐とひき肉を炒め、醤油、豆板醤で味付けし、ごはんを添える。" }
+              "recipe": {
+                "description": "1. 豆腐を切る。\n2. フライパンでひき肉とネギを炒める。\n3. 豆腐、春雨、人参を加えて炒める。\n4. 醤油と豆板醤で味付けする。\n5. ごはんを炊いて、麻婆豆腐を添える。"
+              }
+            }
+          }
+        }
+      ]
+    },
+    "2": {
+      "days": [
+        {
+          "menu": {
+            "breakfast": {
+              "name": "シリアルとフルーツ",
+              "ingredients": [
+                { "name": "シリアル", "quantity": 50, "unit": "g" },
+                { "name": "牛乳", "quantity": 200, "unit": "ml" },
+                { "name": "バナナ", "quantity": 1, "unit": "本" },
+                { "name": "イチゴ", "quantity": 50, "unit": "g" }
+              ],
+              "recipe": {
+                "description": "1. シリアルをボウルに入れる。\n2. 牛乳を注ぐ。\n3. バナナをスライスし、イチゴと一緒にシリアルに添える。"
+              }
+            },
+            "lunch": {
+              "name": "カレーライス",
+              "ingredients": [
+                { "name": "カレールー", "quantity": 100, "unit": "g" },
+                { "name": "牛肉", "quantity": 200, "unit": "g" },
+                { "name": "玉ねぎ", "quantity": 100, "unit": "g" },
+                { "name": "じゃがいも", "quantity": 150, "unit": "g" },
+                { "name": "にんじん", "quantity": 100, "unit": "g" },
+                { "name": "ごはん", "quantity": 1, "unit": "杯" }
+              ],
+              "recipe": {
+                "description": "1. 玉ねぎ、じゃがいも、にんじんを一口大に切る。\n2. 鍋に油を熱し、牛肉と野菜を炒める。\n3. 水を加え、カレールーを溶かす。\n4. 具材が柔らかくなるまで煮込み、ごはんと一緒に盛り付ける。"
+              }
+            },
+            "dinner": {
+              "name": "鯖の味噌煮",
+              "ingredients": [
+                { "name": "鯖", "quantity": 2, "unit": "切れ" },
+                { "name": "味噌", "quantity": 50, "unit": "g" },
+                { "name": "砂糖", "quantity": 20, "unit": "g" },
+                { "name": "みりん", "quantity": 30, "unit": "ml" },
+                { "name": "醤油", "quantity": 10, "unit": "ml" },
+                { "name": "ごぼう", "quantity": 50, "unit": "g" },
+                { "name": "ごはん", "quantity": 1, "unit": "杯" }
+              ],
+              "recipe": {
+                "description": "1. 鯖を洗い、味噌、砂糖、みりん、醤油を混ぜたタレに漬ける。\n2. ごぼうを切る。\n3. 鍋にタレと鯖、ごぼうを入れ、煮込む。\n4. ごはんを炊いて、鯖の味噌煮を添える。"
+              }
+            }
+          }
+        },
+        {
+          "menu": {
+            "breakfast": {
+              "name": "パンケーキとヨーグルト",
+              "ingredients": [
+                { "name": "パンケーキミックス", "quantity": 100, "unit": "g" },
+                { "name": "牛乳", "quantity": 100, "unit": "ml" },
+                { "name": "卵", "quantity": 1, "unit": "個" },
+                { "name": "ヨーグルト", "quantity": 100, "unit": "g" },
+                { "name": "ブルーベリー", "quantity": 50, "unit": "g" }
+              ],
+              "recipe": {
+                "description": "1. パンケーキミックス、牛乳、卵を混ぜて生地を作る。\n2. フライパンでパンケーキを焼く。\n3. ヨーグルトとブルーベリーを添える。"
+              }
+            },
+            "lunch": {
+              "name": "スパゲッティ・ボロネーゼ",
+              "ingredients": [
+                { "name": "スパゲッティ", "quantity": 100, "unit": "g" },
+                { "name": "ひき肉", "quantity": 100, "unit": "g" },
+                { "name": "トマトソース", "quantity": 200, "unit": "g" },
+                { "name": "玉ねぎ", "quantity": 50, "unit": "g" },
+                { "name": "にんにく", "quantity": 1, "unit": "片" },
+                { "name": "オリーブオイル", "quantity": 10, "unit": "ml" }
+              ],
+              "recipe": {
+                "description": "1. スパゲッティを茹でる。\n2. フライパンにオリーブオイルを熱し、ひき肉、玉ねぎ、にんにくを炒める。\n3. トマトソースを加えて煮込む。\n4. スパゲッティにソースをかけて混ぜる。"
+              }
+            },
+            "dinner": {
+              "name": "天ぷら定食",
+              "ingredients": [
+                { "name": "エビ", "quantity": 4, "unit": "尾" },
+                { "name": "なす", "quantity": 1, "unit": "本" },
+                { "name": "かぼちゃ", "quantity": 50, "unit": "g" },
+                { "name": "天ぷら粉", "quantity": 100, "unit": "g" },
+                { "name": "水", "quantity": 150, "unit": "ml" },
+                { "name": "ごはん", "quantity": 1, "unit": "杯" },
+                { "name": "天つゆ", "quantity": 50, "unit": "ml" }
+              ],
+              "recipe": {
+                "description": "1. エビ、なす、かぼちゃを切る。\n2. 天ぷら粉と水を混ぜて衣を作る。\n3. 具材に衣をつけて揚げる。\n4. ごはんと天つゆを添えて天ぷらを盛り付ける。"
+              }
             }
           }
         }
