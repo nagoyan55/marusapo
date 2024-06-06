@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/logics/plan.dart';
 import 'package:myapp/screens/sign_in_screen.dart';
 import 'package:myapp/util/checked_ingredients_manager.dart';
 import 'package:provider/provider.dart';
@@ -95,10 +96,11 @@ class _PlanScreenState extends State<PlanScreen> {
               return Center(child: Text('エラーが発生しました: ${snapshot.error}'));
             } else if (snapshot.hasData) {
               final weekPlan = snapshot.data!;
+              final weekPlanWithDate = setDates(weekPlan, DateTime.now());
               return Column(
                 children: [
                   Expanded(
-                    child: PlanList(weekPlan: weekPlan),
+                    child: PlanList(weekPlan: weekPlanWithDate),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
