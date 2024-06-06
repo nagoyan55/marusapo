@@ -1,17 +1,5 @@
-import 'dart:convert';
 import 'package:myapp/models/week_plan.dart';
 import 'package:myapp/models/day_plan.dart';
-
-WeekPlan createPlanFromJson(String jsonString, DateTime startDate) {
-  try {
-    final Map<String, dynamic> jsonResponse = jsonDecode(jsonString);
-    WeekPlan weekPlan = WeekPlan.fromJson(jsonResponse);
-    weekPlan = setDates(weekPlan, startDate);
-    return weekPlan;
-  } catch (e) {
-    throw FormatException("Invalid JSON format: $e");
-  }
-}
 
 WeekPlan setDates(WeekPlan weekPlan, DateTime startDate) {
   final List<DayPlan> updatedDays = weekPlan.days.asMap().map((i, dayPlan) {

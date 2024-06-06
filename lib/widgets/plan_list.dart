@@ -13,6 +13,9 @@ class PlanList extends StatelessWidget {
       itemCount: weekPlan.days.length,
       itemBuilder: (context, index) {
         final dayPlan = weekPlan.days[index];
+        if(dayPlan.date == null) {
+          throw Exception("dayPlan.date is null");
+        }
 
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
