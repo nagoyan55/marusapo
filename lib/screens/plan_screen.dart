@@ -3,6 +3,7 @@ import 'package:myapp/logics/plan.dart';
 import 'package:myapp/screens/sign_in_screen.dart';
 import 'package:myapp/util/checked_ingredients_manager.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../services/auth_service.dart';
 import '../services/firestore_service.dart';
 import '../models/week_plan.dart';
@@ -23,6 +24,7 @@ class _PlanScreenState extends State<PlanScreen> {
   void initState() {
     super.initState();
     _loadPlan();
+    _showTutorialIfFirstTime();
   }
 
   Future<void> _loadPlan() async {
@@ -51,6 +53,51 @@ class _PlanScreenState extends State<PlanScreen> {
       context,
       MaterialPageRoute(builder: (context) => HomeScreen(hasSavedPlan: false)),
       (Route<dynamic> route) => false,
+    );
+  }
+
+  Future<void> _showTutorialIfFirstTime() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool isFirstTime = prefs.getBool('isFirstTime') ?? true;
+
+    if (isFirstTime) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        _showTutorialDialog();
+      });
+    }
+  }
+
+  void _showTutorialDialog() {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('プランを作成しました！'),
+          content: SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text('この画面では、一週間の献立プランを見ることができます。'),
+                SizedBox(height: 10),
+                Text('右上の再作成アイコンをタップすると、新しいプランを生成します。'),
+                SizedBox(height: 10),
+                Text('買い物リストボタンをタップすると、必要な食材のリストを表示します。'),
+                SizedBox(height: 10),
+                Text('メニューをタップすると、材料とレシピを表示します。'),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              child: Text('閉じる'),
+              onPressed: () async {
+                SharedPreferences prefs = await SharedPreferences.getInstance();
+                await prefs.setBool('isFirstTime', false);
+                Navigator.of(context).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 
