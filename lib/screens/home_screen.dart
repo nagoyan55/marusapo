@@ -17,7 +17,7 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('こんだてまるさぽくん'),
+        title: Text('献立まるさぽくん'),
         actions: [
           if (user != null) ...[
             Padding(

@@ -25,7 +25,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'こんだてまるさぽくん',
+        title: '献立まるさぽくん',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),

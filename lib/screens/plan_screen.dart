@@ -62,7 +62,7 @@ class _PlanScreenState extends State<PlanScreen> {
       onWillPop: () async => false,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('こんだてまるさぽくん'),
+          title: Text('献立まるさぽくん'),
           actions: [
             IconButton(
               icon: Icon(Icons.refresh),

@@ -10,7 +10,7 @@ class SignInScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('サインイン'),
+        title: Text('献立まるさぽくん'),
       ),
       body: Center(
         child: Column(
